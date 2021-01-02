@@ -65,7 +65,6 @@ public class Tank {
 
     public boolean paint(Graphics g)
     {
-//        if (!living) return;
         switch (dir)
         {
             case LEFT:
@@ -80,6 +79,11 @@ public class Tank {
             case UP:
                 g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU : ResourceMgr.badTankU,x,y,null);
                 break;
+        }
+        if (this.group == Group.GOOD)
+        {
+            move();
+            return true;
         }
         return move();
     }
@@ -102,7 +106,7 @@ public class Tank {
 
     private boolean move()
     {
-//        if (!moving) return ;
+        if (!moving) return false;
         switch (dir)
         {
             case DOWN:
@@ -121,8 +125,7 @@ public class Tank {
                 break;
         }
 
-        rect.x = this.x;
-        rect.y = this.y;
+
         if (x < 0 || y <0 || x > TankFrame.GAME_WIDTH || y > TankFrame.GAME_HEIGHT)
         {
             living = false;
@@ -134,6 +137,8 @@ public class Tank {
             randomDir();
         }
         boundsCheck();
+        rect.x = this.x;
+        rect.y = this.y;
         return true;
 
     }

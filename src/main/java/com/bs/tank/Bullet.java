@@ -92,7 +92,7 @@ public class Bullet {
         }
 //        Rectangle rect1 = new Rectangle(this.x , this.y ,WIDTH , HEIGHT);
 //        Rectangle rect2 = new Rectangle(tank.getX() , tank.getY() , tank.WIDTH , tank.HEIGHT);
-        if (rect.intersects(rect))
+        if (rect.intersects(tank.rect))
         {
             tank.die();
             this.die();
